@@ -25,3 +25,4 @@ taxonomy_annotation/*
 only_for_mapping/*
 *-slurm.out
 unmapped_reads/*
+multiqc_*
