@@ -7,6 +7,7 @@ import sys
 import shutil
 import glob
 from subprocess import check_output
+from collections import defaultdict
 
 # Check that no submodule git repo is dirty
 submodules = ["snakemake-workflows", "toolbox"]
@@ -34,9 +35,12 @@ config["megahit_rules"]["samples"] = {}
 
 with open("sample_indices.json") as si:
     sample_indices = json.load(si)
+def default_analysis():
+    return "quality_adapter_no_indices"
 
+analysis_per_sample = defaultdict(default_analysis)
 with open("analysis_per_sample.json") as aps:
-    analysis_per_sample = json.load(aps)
+    analysis_per_sample.update(json.load(aps))
 
 with open("sample_groups.json") as sg:
     sample_groups = json.load(sg)
